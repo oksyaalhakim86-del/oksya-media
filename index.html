@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Interaktif Geografi Kelas X - Permasalahan Lingkungan Hidup di Indonesia</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        eco: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        earth: {
+                            500: '#d97706',
+                            700: '#b45309',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS Khusus untuk aspek rasio landscape 16:9 & Cetak PDF */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            user-select: none;
+            overflow-x: hidden;
+        }
+
+        .aspect-16-9 {
+            aspect-ratio: 16 / 9;
+        }
+
+        .slide-content {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.78)), url('Assets/LB.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .title-art {
+            width: min(100%, 700px);
+            max-height: 46%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            opacity: 1;
+            animation: none;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(-0.5deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(0.5deg);
+            }
+        }
+
+        /* Glassmorphic Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .identity-panel {
+            background: radial-gradient(circle at 92% 8%, rgba(251, 191, 36, 0.18), transparent 28%), radial-gradient(circle at 8% 94%, rgba(34, 197, 94, 0.16), transparent 30%), linear-gradient(145deg, rgba(6, 54, 48, 0.96), rgba(12, 35, 36, 0.94) 58%, rgba(53, 52, 24, 0.92));
+            border-color: rgba(110, 190, 116, 0.48);
+            box-shadow: 0 24px 60px rgba(3, 20, 18, 0.45), inset 0 1px 0 rgba(255, 214, 91, 0.18);
+        }
+
+        .identity-panel::before {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            border: 1px solid rgba(110, 190, 116, 0.16);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #16a34a;
+            border-radius: 4px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Styles khusus saat dicetak PDF (Hanya Sertifikat Slide 6) */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            #app-container {
+                max-width: 100% !important;
+                height: auto !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                border: none !important;
+            }
+            .slide-content {
+                display: none !important;
+            }
+            #slide-6 {
+                display: block !important;
+                background: white !important;
+            }
+            .print-certificate-container {
+                border: 10px double #15803d !important;
+                padding: 30px !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                background: white !important;
+                color: #000 !important;
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-2 sm:p-4 md:p-6 text-slate-800">
+
+    <!-- Container Utama Media Pembelajaran Interaktif (Resolusi Optimized 16:9 Landscape) -->
+    <div id="app-container" class="w-full max-w-6xl aspect-16-9 min-h-[550px] bg-slate-900 rounded-3xl shadow-2xl overflow-hidden flex flex-col relative border border-slate-700/50">
+
+        <!-- Top Header / Bar Navigasi Status -->
+        <header class="no-print bg-slate-900/90 border-b border-slate-800 px-6 py-3 flex justify-between items-center shrink-0 z-20">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-xl bg-eco-600 text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-eco-600/30">
+                    <i class="fa-solid fa-earth-asia"></i>
+                </div>
+                <div>
+                    <h1 class="text-white font-bold text-sm md:text-base leading-tight">GEO-LEARN INTERACTIVE</h1>
+                    <p class="text-slate-400 text-xs">Geografi Kelas X SMA • Fase E</p>
+                </div>
+            </div>
+
+            <!-- Stepper Progress Indicator -->
+            <div class="hidden md:flex items-center space-x-2 text-xs font-semibold">
+                <button onclick="navToSlide(1)" id="step-btn-1" class="px-3 py-1.5 rounded-full bg-eco-600 text-white transition-all">1. Beranda</button>
+                <i class="fa-solid fa-chevron-right text-slate-600 text-xs"></i>
+                <button onclick="navToSlide(2)" id="step-btn-2" class="px-3 py-1.5 rounded-full bg-slate-800 text-slate-400 hover:text-white transition-all">2. Identitas</button>
+                <i class="fa-solid fa-chevron-right text-slate-600 text-xs"></i>
+                <button onclick="navToSlide(3)" id="step-btn-3" class="px-3 py-1.5 rounded-full bg-slate-800 text-slate-400 hover:text-white transition-all">3. Tujuan</button>
+                <i class="fa-solid fa-chevron-right text-slate-600 text-xs"></i>
+                <button onclick="navToSlide(4)" id="step-btn-4" class="px-3 py-1.5 rounded-full bg-slate-800 text-slate-400 hover:text-white transition-all">4. Materi</button>
+                <i class="fa-solid fa-chevron-right text-slate-600 text-xs"></i>
+                <button onclick="navToSlide(5)" id="step-btn-5" class="px-3 py-1.5 rounded-full bg-slate-800 text-slate-400 hover:text-white transition-all">5. Gim Edukasi</button>
+                <i class="fa-solid fa-chevron-right text-slate-600 text-xs"></i>
+                <button onclick="navToSlide(6)" id="step-btn-6" class="px-3 py-1.5 rounded-full bg-slate-800 text-slate-400 hover:text-white transition-all">6. Sertifikat</button>
+                <i class="fa-solid fa-chevron-right text-slate-600 text-xs"></i>
+                <button onclick="navToSlide(7)" id="step-btn-7" class="px-3 py-1.5 rounded-full bg-slate-800 text-slate-400 hover:text-white transition-all">7. Profil Pembuat</button>
+            </div>
+
+            <!-- Sound & Fullscreen Controls -->
+            <div class="flex items-center space-x-2">
+                <button onclick="toggleAudio()" id="audio-btn" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition" title="Efek Suara">
+                    <i class="fa-solid fa-volume-high" id="audio-icon"></i>
+                </button>
+                <button onclick="toggleFullscreen()" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition" title="Layar Penuh">
+                    <i class="fa-solid fa-expand"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Slide View Area -->
+        <main class="flex-1 relative overflow-hidden bg-slate-900 text-slate-100 flex items-center justify-center">
+
+            <!-- SLIDE 1: JUDUL DAN IDENTITAS MATA PELAJARAN -->
+            <section id="slide-1" class="slide-content w-full h-full p-4 md:p-8 flex flex-col justify-between items-center text-center relative bg-cover bg-center animate-fade-in overflow-y-auto">
+                <div class="absolute left-3 md:left-8 top-1/2 -translate-y-1/2 z-10 flex flex-col items-center gap-2 text-center w-24 md:w-32">
+                    <div class="w-16 h-16 md:w-24 md:h-24 rounded-full border-2 border-amber-300/70 bg-white flex items-center justify-center overflow-hidden shadow-lg shadow-amber-900/30">
+                        <img src="Assets/PD.jpeg" alt="Foto Dosen Pengampu Dr. Nofrion, M.Pd." class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-[10px] md:text-xs font-semibold leading-tight text-amber-100">Dosen Pengampu:<br>Dr. Nofrion, M.Pd.</p>
+                </div>
+                <div class="absolute right-3 md:right-8 top-1/2 -translate-y-1/2 z-10 w-16 h-16 md:w-24 md:h-24 rounded-full border-2 border-eco-300/70 bg-white flex items-center justify-center overflow-hidden shadow-lg shadow-eco-900/30">
+                    <img src="Assets/UNP.jpeg" alt="Logo Universitas Negeri Padang" class="w-full h-full object-cover">
+                </div>
+                <div class="max-w-2xl space-y-4">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-eco-500/20 border border-eco-500/40 text-eco-400 text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-seedling"></i>
+                        <span>Geografi SMA • Kelas X (Fase E)</span>
+                    </div>
+                    <h1 class="sr-only">Permasalahan Lingkungan Hidup di Indonesia</h1>
+                    <img class="title-art" src="Assets/judul-jd2.svg" alt="Permasalahan Lingkungan Hidup di Indonesia">
+                    <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                        Media pembelajaran interaktif eksploratif mengenai krisis ekologis, pencemaran, deforestasi, krisis sampah plastik, serta solusi kelestarian lingkungan Indonesia.
+                    </p>
+                    <div class="pt-2 flex flex-wrap justify-center gap-4 text-xs text-slate-400">
+                        <span class="flex items-center"><i class="fa-solid fa-book-open text-eco-400 mr-1.5"></i> Kurikulum Merdeka</span>
+                        <span class="flex items-center"><i class="fa-solid fa-gamepad text-eco-400 mr-1.5"></i> Interaktif & Gim</span>
+                        <span class="flex items-center"><i class="fa-solid fa-award text-eco-400 mr-1.5"></i> Sertifikat Otomatis</span>
+                    </div>
+                </div>
+
+                <div class="w-full flex justify-between items-end pt-6 text-left">
+                    <div class="text-xs text-slate-400">
+                        <p class="font-semibold text-slate-300">Pengembang Media:</p>
+                        <p>Tim Pengembang Media Geografi SMA</p>
+                    </div>
+                    <button onclick="nextSlide()" class="px-8 py-4 bg-gradient-to-r from-eco-600 to-emerald-500 hover:from-eco-500 hover:to-emerald-400 text-white font-bold rounded-2xl shadow-xl shadow-eco-600/30 hover:scale-105 transition-all flex items-center space-x-3 text-base">
+                        <span>Mulai Pembelajaran</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- SLIDE 2: INPUT IDENTITAS MURID -->
+            <section id="slide-2" class="slide-content hidden w-full h-full p-4 md:p-6 flex flex-col justify-start items-center bg-slate-900 animate-fade-in relative overflow-y-auto">
+                <div class="absolute top-10 left-8 md:left-16 text-eco-400/30 text-6xl rotate-12 pointer-events-none">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <div class="absolute bottom-10 right-8 md:right-16 text-amber-300/30 text-7xl -rotate-12 pointer-events-none">
+                    <i class="fa-solid fa-earth-asia"></i>
+                </div>
+                <div class="absolute top-1/2 left-1/2 w-[min(90%,42rem)] h-[min(90%,32rem)] -translate-x-1/2 -translate-y-1/2 rounded-full border border-eco-400/10 pointer-events-none"></div>
+
+                <div class="w-full max-w-xl glass-dark identity-panel p-5 md:p-6 my-2 rounded-3xl border border-slate-700/60 shadow-2xl relative z-10 space-y-4 overflow-hidden">
+                    <div class="absolute -top-5 -right-3 text-5xl text-eco-300/20 rotate-12 pointer-events-none">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <div class="absolute -bottom-5 -left-3 text-5xl text-amber-300/20 -rotate-12 pointer-events-none">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div class="flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-amber-200/80">
+                        <i class="fa-solid fa-water text-cyan-300"></i>
+                        <span>Jelajah Bumi Indonesia</span>
+                        <i class="fa-solid fa-leaf text-eco-300"></i>
+                    </div>
+                    <div class="text-center space-y-1">
+                        <div class="w-14 h-14 bg-eco-500/20 text-eco-300 rounded-full flex items-center justify-center mx-auto text-2xl mb-2 border border-eco-300/40 shadow-lg shadow-eco-900/30">
+                            <i class="fa-solid fa-earth-asia"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white">Identitas Penjelajah Alam</h2>
+                        <p class="text-xs text-emerald-100/70">Kenali diri Anda sebelum menjelajahi lingkungan Indonesia</p>
+                    </div>
+
+                    <div class="flex justify-center gap-2 text-[10px] text-emerald-100/70">
+                        <span class="px-2.5 py-1 rounded-full border border-emerald-300/20 bg-emerald-300/10"><i class="fa-solid fa-tree text-emerald-300 mr-1"></i>Hutan</span>
+                        <span class="px-2.5 py-1 rounded-full border border-cyan-300/20 bg-cyan-300/10"><i class="fa-solid fa-water text-cyan-300 mr-1"></i>Air</span>
+                        <span class="px-2.5 py-1 rounded-full border border-amber-300/20 bg-amber-300/10"><i class="fa-solid fa-sun text-amber-300 mr-1"></i>Iklim</span>
+                    </div>
+
+                    <div class="flex items-center gap-2 text-[10px] uppercase tracking-wider font-bold text-slate-400">
+                        <span class="w-6 h-6 rounded-full bg-eco-500 text-white flex items-center justify-center">1</span>
+                        <span class="text-eco-300">Data Diri</span>
+                        <span class="h-px flex-1 bg-slate-700"></span>
+                        <span class="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center">2</span>
+                        <span>Mulai Belajar</span>
+                    </div>
+
+                    <form id="identity-form" onsubmit="saveIdentity(event)" class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1.5">Nama Lengkap Murid <span class="text-red-400">*</span></label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fa-solid fa-id-card"></i></span>
+                                <input type="text" id="student-name" required placeholder="Masukkan nama lengkap Anda..." class="w-full pl-10 pr-4 py-2.5 bg-slate-800/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-eco-500 text-sm transition">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1.5">Kelas <span class="text-red-400">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fa-solid fa-chalkboard-user"></i></span>
+                                    <select id="student-class" required class="w-full pl-10 pr-4 py-2.5 bg-slate-800/80 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-eco-500 text-sm transition appearance-none">
+                                        <option value="" disabled selected>Pilih Kelas...</option>
+                                        <option value="X-1">X-1 (Fase E)</option>
+                                        <option value="X-2">X-2 (Fase E)</option>
+                                        <option value="X-3">X-3 (Fase E)</option>
+                                        <option value="X-4">X-4 (Fase E)</option>
+                                        <option value="X-5">X-5 (Fase E)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1.5">Asal Sekolah <span class="text-red-400">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400"><i class="fa-solid fa-school"></i></span>
+                                    <input type="text" id="student-school" required placeholder="Contoh: SMAN 1 Jakarta" class="w-full pl-10 pr-4 py-2.5 bg-slate-800/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-eco-500 text-sm transition">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Warning Toast Modal internally -->
+                        <div id="form-error" class="hidden p-3 bg-red-500/20 border border-red-500/40 rounded-xl text-red-300 text-xs flex items-center space-x-2">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            <span id="error-msg">Harap isi semua data dengan benar.</span>
+                        </div>
+
+                        <div class="pt-2 flex space-x-3">
+                            <button type="button" onclick="prevSlide()" class="w-1/3 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-xl text-sm transition">
+                                Kembali
+                            </button>
+                            <button type="submit" class="w-2/3 py-3 bg-eco-600 hover:bg-eco-500 text-white font-bold rounded-xl text-sm shadow-lg shadow-eco-600/30 transition flex items-center justify-center space-x-2">
+                                <span>Simpan & Lanjutkan</span>
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- SLIDE 3: TUJUAN PEMBELAJARAN DAN GAMBARAN UMUM -->
+            <section id="slide-3" class="slide-content hidden w-full h-full p-6 md:p-8 flex flex-col justify-between bg-slate-900 animate-fade-in overflow-y-auto">
+                <div class="space-y-6">
+                    <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
+                        <div>
+                            <span class="text-xs text-eco-400 font-semibold uppercase tracking-wider">Capaian Pembelajaran • Fase E</span>
+                            <h2 class="text-2xl font-extrabold text-white">Tujuan Pembelajaran & Gambaran Umum</h2>
+                        </div>
+                        <span class="px-3 py-1 bg-slate-800 text-slate-300 rounded-lg text-xs">Slide 3 dari 6</span>
+                    </div>
+
+                    <!-- Grid Tujuan & Peta Konsep -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Card Tujuan -->
+                        <div class="glass-dark p-6 rounded-2xl border border-slate-800 space-y-4">
+                            <h3 class="text-sm font-bold text-eco-400 flex items-center">
+                                <i class="fa-solid fa-bullseye text-lg mr-2"></i> Tujuan Pembelajaran (TP)
+                            </h3>
+                            <ul class="space-y-3 text-xs md:text-sm text-slate-300">
+                                <li class="flex items-start">
+                                    <span class="w-5 h-5 rounded-full bg-eco-500/20 text-eco-400 flex items-center justify-center text-xs font-bold mr-2.5 shrink-0 mt-0.5">1</span>
+                                    <span>Mengidentifikasi bentuk-bentuk permasalahan lingkungan hidup utama di Indonesia (deforestasi, pencemaran, krisis sampah, dll).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-5 h-5 rounded-full bg-eco-500/20 text-eco-400 flex items-center justify-center text-xs font-bold mr-2.5 shrink-0 mt-0.5">2</span>
+                                    <span>Menganalisis faktor penyebab dan dampak ekologis maupun sosial-ekonomi dari kerusakan lingkungan.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-5 h-5 rounded-full bg-eco-500/20 text-eco-400 flex items-center justify-center text-xs font-bold mr-2.5 shrink-0 mt-0.5">3</span>
+                                    <span>Merumuskan solusi berkelanjutan dan bentuk partisipasi masyarakat berdasarkan regulasi PPLH di Indonesia.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Gambaran Pokok Bahasan -->
+                        <div class="glass-dark p-3 rounded-2xl border border-slate-800">
+                            <img src="Assets/GPB.jpeg" alt="Gambaran Pokok Bahasan: deforestasi dan gambut, sampah plastik, pencemaran air dan udara, serta solusi dan regulasi" class="w-full h-auto rounded-xl object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-800 mt-4">
+                    <button onclick="prevSlide()" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-xl text-xs md:text-sm transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Sebelumnya</span>
+                    </button>
+                    <button onclick="nextSlide()" class="px-6 py-2.5 bg-eco-600 hover:bg-eco-500 text-white font-bold rounded-xl text-xs md:text-sm shadow-lg shadow-eco-600/30 transition flex items-center space-x-2">
+                        <span>Eksplorasi Materi</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- SLIDE 4: URAIAN MATERI INTERAKTIF -->
+            <section id="slide-4" class="slide-content hidden w-full h-full p-4 md:p-6 flex flex-col justify-between bg-slate-900 animate-fade-in overflow-hidden">
+                <div class="flex justify-between items-center mb-3">
+                    <div>
+                        <span class="text-xs text-eco-400 font-semibold">Materi Pembelajaran Interaktif</span>
+                        <h2 class="text-xl font-bold text-white">Isu Utama Lingkungan Hidup di Indonesia</h2>
+                    </div>
+                    <!-- Tab Selector -->
+                    <div class="flex space-x-1 bg-slate-800 p-1 rounded-xl text-xs">
+                        <button onclick="switchTab('topic1')" id="tab-topic1" class="tab-btn px-3 py-1.5 rounded-lg bg-eco-600 text-white font-medium transition">Deforestasi</button>
+                        <button onclick="switchTab('topic2')" id="tab-topic2" class="tab-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-medium transition">Sampah Plastik</button>
+                        <button onclick="switchTab('topic3')" id="tab-topic3" class="tab-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-medium transition">Pencemaran</button>
+                        <button onclick="switchTab('topic4')" id="tab-topic4" class="tab-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-medium transition">Biodiversitas</button>
+                        <button onclick="switchTab('topic5')" id="tab-topic5" class="tab-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-medium transition">Solusi & UU</button>
+                    </div>
+                </div>
+
+                <!-- Tab Content Containers -->
+                <div class="flex-1 relative overflow-y-auto pr-2">
+                    <!-- Topic 1: Deforestasi & Kebakaran Gambut -->
+                    <div id="content-topic1" class="tab-content space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="md:col-span-2 glass-dark p-5 rounded-2xl border border-slate-800 space-y-3">
+                                <h3 class="text-base font-bold text-emerald-400 flex items-center">
+                                    <i class="fa-solid fa-tree-city mr-2"></i> Deforestasi dan Alih Fungsi Lahan Gambut
+                                </h3>
+                                <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                                    Indonesia memiliki hutan hujan tropis terbesar ketiga di dunia. Namun, aktivitas seperti penebangan liar (illegal logging), pembukaan perkebunan skala besar, dan pertambangan telah mengurangi tutupan hutan dari 84% pada tahun 1900 menjadi jauh lebih sedikit hari ini.
+                                </p>
+                                <div class="bg-slate-800/90 p-3 rounded-xl border border-slate-700/60 text-xs text-slate-300 space-y-2">
+                                    <p class="font-semibold text-amber-400"><i class="fa-solid fa-fire mr-1"></i> Dampak Kebakaran Lahan Gambut:</p>
+                                    <p>Lahan gambut menyimpan cadangan karbon tinggi. Kebakaran gambut merilis Emisi Gas Rumah Kaca (GRK) dalam jumlah sangat besar dan memicu kabut asap lintas negara (transboundary haze).</p>
+                                </div>
+                            </div>
+                            <div class="glass-dark p-3 rounded-2xl border border-slate-800 flex flex-col justify-center items-center">
+                                <div class="relative w-full overflow-hidden rounded-xl">
+                                    <img src="Assets/3rd.jpeg" alt="Indonesia penyumbang emisi karbon terbesar ke-3 dunia akibat kerusakan gambut dan deforestasi" class="w-full h-auto object-cover">
+                                    <div class="absolute left-[6%] top-[57%] w-[55%] bg-slate-900/95 px-[1.5%] py-[0.8%] text-[clamp(5px,0.8vw,11px)] leading-tight text-white">
+                                        Sumber: Data Wikipedia Masalah Lingkungan Hidup
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 2: Krisis Sampah Plastik -->
+                    <div id="content-topic2" class="tab-content hidden space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="md:col-span-2 glass-dark p-5 rounded-2xl border border-slate-800 space-y-3">
+                                <h3 class="text-base font-bold text-blue-400 flex items-center">
+                                    <i class="fa-solid fa-bottle-water mr-2"></i> Krisis Sampah Plastik & Ekosistem Laut
+                                </h3>
+                                <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                                    Berdasarkan data Bank Dunia (2021), Indonesia menghasilkan sekitar <strong>7,8 juta ton sampah plastik</strong> per tahun. Dari jumlah tersebut, 4,9 juta ton tidak dikelola dengan baik dan sebanyak 346,5 ribu ton berakhir di lautan.
+                                </p>
+                                <div class="grid grid-cols-2 gap-3 text-xs">
+                                    <div class="bg-blue-950/40 p-3 rounded-xl border border-blue-900/50">
+                                        <p class="font-bold text-blue-300">Ancaman Biota Laut</p>
+                                        <p class="text-slate-400 text-[11px] mt-1">Lebih dari 800 spesies laut terancam karena tertelan atau terjerat plastik.</p>
+                                    </div>
+                                    <div class="bg-blue-950/40 p-3 rounded-xl border border-blue-900/50">
+                                        <p class="font-bold text-blue-300">Bahaya Mikroplastik</p>
+                                        <p class="text-slate-400 text-[11px] mt-1">Plastik terurai jadi partikel mikro yang masuk ke rantai makanan manusia melalui seafood.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="glass-dark p-5 rounded-2xl border border-slate-800 flex flex-col justify-center items-center text-center space-y-2">
+                                <span class="text-3xl font-extrabold text-blue-400">7.8 Juta Ton</span>
+                                <p class="text-xs text-slate-300">Total Sampah Plastik / Tahun di Indonesia</p>
+                                <div class="w-full bg-slate-800 rounded-full h-2 mt-2">
+                                    <div class="bg-blue-500 h-2 rounded-full w-[63%]"></div>
+                                </div>
+                                <span class="text-[10px] text-slate-400">63% Belum dikelola sempurna</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 3: Pencemaran Air & Udara -->
+                    <div id="content-topic3" class="tab-content hidden space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="glass-dark p-5 rounded-2xl border border-slate-800 space-y-2">
+                                <h4 class="text-sm font-bold text-cyan-400 flex items-center"><i class="fa-solid fa-water mr-2"></i> Pencemaran Air Sungai</h4>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    Sungai-sungai besar seperti Citarum di Jawa Barat sempat dikategorikan sebagai salah satu sungai paling tercemar di dunia akibat buangan limbah cair pabrik tekstil, industri, serta limbah domestik tanpa pengolahan IPAL yang memadai.
+                                </p>
+                            </div>
+                            <div class="glass-dark p-5 rounded-2xl border border-slate-800 space-y-2">
+                                <h4 class="text-sm font-bold text-gray-300 flex items-center"><i class="fa-solid fa-smog mr-2"></i> Pencemaran Udara Perkotaan</h4>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    Pertumbuhan jumlah kendaraan bermotor, pembakaran batu bara pada PLTU, dan emisi industri memperburuk kualitas udara (PM2.5) di kota-kota besar seperti Jakarta, memicu penyakit ISPA bagi warga.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 4: Biodiversitas & Satwa Endemik -->
+                    <div id="content-topic4" class="tab-content hidden space-y-4">
+                        <div class="glass-dark p-5 rounded-2xl border border-slate-800 space-y-3">
+                            <h3 class="text-base font-bold text-orange-400 flex items-center"><i class="fa-solid fa-paw mr-2"></i> Ancaman Kepunahan Satwa Endemik</h3>
+                            <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                                Menurut laporan IUCN, degradasi habitat mengancam 140 spesies mamalia di Indonesia, dengan 15 spesies di antaranya berada dalam status Sangat Terancam Punah (Critically Endangered), seperti Orangutan Sumatera, Harimau Sumatera, dan Badak Jawa.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Topic 5: Solusi & Regulasi -->
+                    <div id="content-topic5" class="tab-content hidden space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="glass-dark p-4 rounded-xl border border-slate-800 text-xs space-y-2">
+                                <span class="px-2 py-0.5 bg-eco-500/20 text-eco-400 rounded font-bold">UU PPLH</span>
+                                <p class="font-bold text-white">UU No. 32 Tahun 2009</p>
+                                <p class="text-slate-400">Payung hukum Perlindungan dan Pengelolaan Lingkungan Hidup serta kewajiban AMDAL.</p>
+                            </div>
+                            <div class="glass-dark p-4 rounded-xl border border-slate-800 text-xs space-y-2">
+                                <span class="px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded font-bold">Prinsip 3R</span>
+                                <p class="font-bold text-white">Reduce, Reuse, Recycle</p>
+                                <p class="text-slate-400">Pengurangan pemakaian plastik sekali pakai, penggunaan ulang, & daur ulang sampah.</p>
+                            </div>
+                            <div class="glass-dark p-4 rounded-xl border border-slate-800 text-xs space-y-2">
+                                <span class="px-2 py-0.5 bg-amber-500/20 text-amber-400 rounded font-bold">Bank Sampah</span>
+                                <p class="font-bold text-white">Ekonomi Sirkular</p>
+                                <p class="text-slate-400">Pengelolaan sampah berbasis partisipasi masyarakat untuk mendaur ulang dan meningkatkan nilai ekonomi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex justify-between items-center pt-3 border-t border-slate-800">
+                    <button onclick="prevSlide()" class="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-xl text-xs transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Sebelumnya</span>
+                    </button>
+                    <button onclick="nextSlide()" class="px-6 py-2 bg-eco-600 hover:bg-eco-500 text-white font-bold rounded-xl text-xs shadow-lg shadow-eco-600/30 transition flex items-center space-x-2">
+                        <span>Lanjut ke Gim Edukasi</span>
+                        <i class="fa-solid fa-gamepad"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: GIM EDUKASI INTERAKTIF -->
+            <section id="slide-5" class="slide-content hidden w-full h-full p-4 md:p-6 flex flex-col justify-between bg-slate-900 animate-fade-in overflow-hidden">
+                <div class="flex justify-between items-center mb-2">
+                    <div>
+                        <span class="text-xs text-eco-400 font-semibold uppercase">Evaluasi & Gim Edukasi</span>
+                        <h2 class="text-xl font-bold text-white">Uji Pemahaman Materi Lingkungan</h2>
+                    </div>
+
+                    <!-- Mini Game Sub-Tabs -->
+                    <div class="flex space-x-1 bg-slate-800 p-1 rounded-xl text-xs">
+                        <button onclick="switchGameTab('pg')" id="game-tab-pg" class="game-btn px-3 py-1.5 rounded-lg bg-eco-600 text-white font-semibold transition">1. Pilihan Ganda</button>
+                        <button onclick="switchGameTab('matching')" id="game-tab-matching" class="game-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-semibold transition">2. Menjodohkan</button>
+                        <button onclick="switchGameTab('category')" id="game-tab-category" class="game-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-semibold transition">3. Mengkategorikan</button>
+                    </div>
+                </div>
+
+                <!-- Game Container Area -->
+                <div class="flex-1 relative overflow-y-auto pr-1">
+
+                    <!-- GAME 1: PILIHAN GANDA -->
+                    <div id="game-pg" class="game-container space-y-4">
+                        <div class="glass-dark p-5 rounded-2xl border border-slate-800 max-w-3xl mx-auto space-y-4">
+                            <div class="flex justify-between items-center text-xs text-slate-400 border-b border-slate-800 pb-2">
+                                <span id="pg-progress-text">Soal 1 dari 5</span>
+                                <span class="text-eco-400 font-bold" id="pg-score-live">Skor PG: 0</span>
+                            </div>
+
+                            <h3 id="pg-question" class="text-sm md:text-base font-bold text-white leading-snug">
+                                Loading soal...
+                            </h3>
+
+                            <div id="pg-options" class="grid grid-cols-1 gap-2.5">
+                                <!-- Choices rendered dynamically by JS -->
+                            </div>
+
+                            <div id="pg-feedback" class="hidden p-3 rounded-xl text-xs font-medium"></div>
+                        </div>
+                    </div>
+
+                    <!-- GAME 2: MENJODOHKAN (MATCHING PAIRS) -->
+                    <div id="game-matching" class="game-container hidden space-y-4">
+                        <div class="glass-dark p-5 rounded-2xl border border-slate-800 max-w-3xl mx-auto space-y-3">
+                            <div class="text-xs text-slate-300">
+                                <p class="font-bold text-white">Petunjuk:</p>
+                                <p class="text-slate-400">Klik istilah di sebelah kiri, lalu klik deskripsi pasangan yang sesuai di sebelah kanan!</p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                                <!-- Term Column -->
+                                <div id="match-terms" class="space-y-2">
+                                    <!-- Dynamic -->
+                                </div>
+                                <!-- Definition Column -->
+                                <div id="match-defs" class="space-y-2">
+                                    <!-- Dynamic -->
+                                </div>
+                            </div>
+                            <div id="matching-feedback" class="hidden p-3 rounded-xl text-xs font-semibold text-center"></div>
+                        </div>
+                    </div>
+
+                    <!-- GAME 3: MENGKATEGORIKAN -->
+                    <div id="game-category" class="game-container hidden space-y-4">
+                        <div class="glass-dark p-5 rounded-2xl border border-slate-800 max-w-4xl mx-auto space-y-3">
+                            <p class="text-xs text-slate-300">
+                                Klasifikasikan pernyataan di bawah ini dengan menekan tombol kategori yang sesuai (Penyebab, Dampak, atau Solusi)!
+                            </p>
+
+                            <div id="category-cards-container" class="space-y-3">
+                                <!-- Dynamic items to classify -->
+                            </div>
+
+                            <div id="category-feedback" class="hidden p-3 rounded-xl text-xs font-semibold text-center"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Game Navigation -->
+                <div class="flex justify-between items-center pt-3 border-t border-slate-800">
+                    <button onclick="prevSlide()" class="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-xl text-xs transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Kembali ke Materi</span>
+                    </button>
+                    <button onclick="finishGameAndShowCertificate()" class="px-6 py-2.5 bg-gradient-to-r from-eco-600 to-emerald-500 hover:from-eco-500 hover:to-emerald-400 text-white font-bold rounded-xl text-xs shadow-lg shadow-eco-600/30 transition flex items-center space-x-2">
+                        <span>Selesaikan & Lihat Sertifikat</span>
+                        <i class="fa-solid fa-award"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: SERTIFIKAT DAN NILAI AKHIR -->
+            <section id="slide-6" class="slide-content hidden w-full h-full p-4 md:p-6 flex flex-col justify-between bg-slate-900 animate-fade-in overflow-y-auto">
+                
+                <!-- Print container wrapper -->
+                <div class="print-certificate-container glass-card bg-white text-slate-900 p-6 md:p-8 rounded-3xl border-4 border-eco-600 shadow-2xl relative max-w-4xl mx-auto w-full my-auto space-y-4 text-center">
+                    
+                    <!-- Decorative Ornaments -->
+                    <div class="flex justify-between items-center border-b-2 border-eco-600/30 pb-4">
+                        <div class="text-left">
+                            <p class="text-xs font-bold text-eco-800 uppercase tracking-widest">Sertifikat Kelulusan Evaluasi</p>
+                            <p class="text-[10px] text-slate-500">Mata Pelajaran Geografi • Fase E SMA</p>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-eco-100 text-eco-700 flex items-center justify-center text-xl font-bold border-2 border-eco-600">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 my-4">
+                        <p class="text-xs text-slate-600 italic">Sertifikat ini secara resmi diberikan kepada:</p>
+                        <h2 id="cert-name" class="text-2xl md:text-3xl font-extrabold text-eco-900 tracking-wide uppercase">NAMA MURID</h2>
+                        <p id="cert-school-class" class="text-xs md:text-sm font-semibold text-slate-700">Kelas X-1 • SMAN 1 Indonesia</p>
+                    </div>
+
+                    <p class="text-xs text-slate-600 max-w-xl mx-auto leading-relaxed">
+                        Telah menyelesaikan seluruh modul pembelajaran interaktif dan rangkaian gim evaluasi geografis pada topik 
+                        <strong class="text-slate-800">"Permasalahan Lingkungan Hidup di Indonesia"</strong>.
+                    </p>
+
+                    <!-- Breakdown Nilai & Predikat -->
+                    <div class="grid grid-cols-4 gap-2 max-w-xl mx-auto bg-slate-50 p-3 rounded-2xl border border-slate-200 text-xs">
+                        <div class="p-2 border-r border-slate-200">
+                            <p class="text-[10px] text-slate-500 font-medium">Nilai PG</p>
+                            <p id="cert-score-pg" class="font-extrabold text-slate-800 text-sm">0</p>
+                        </div>
+                        <div class="p-2 border-r border-slate-200">
+                            <p class="text-[10px] text-slate-500 font-medium">Nilai Jodoh</p>
+                            <p id="cert-score-match" class="font-extrabold text-slate-800 text-sm">0</p>
+                        </div>
+                        <div class="p-2 border-r border-slate-200">
+                            <p class="text-[10px] text-slate-500 font-medium">Kategori</p>
+                            <p id="cert-score-cat" class="font-extrabold text-slate-800 text-sm">0</p>
+                        </div>
+                        <div class="p-2 bg-eco-100/60 rounded-xl">
+                            <p class="text-[10px] text-eco-800 font-bold">NILAI AKHIR</p>
+                            <p id="cert-final-score" class="font-black text-eco-700 text-base">0</p>
+                        </div>
+                    </div>
+
+                    <div class="inline-block px-4 py-1.5 bg-eco-700 text-white rounded-full text-xs font-bold uppercase tracking-wider" id="cert-predicate">
+                        Predikat: Sangat Baik
+                    </div>
+
+                    <!-- Footer Signature Line -->
+                    <div class="flex justify-between items-end pt-4 border-t border-slate-200 text-[11px] text-slate-600">
+                        <div class="text-left">
+                            <p class="font-bold">Tanggal Terbit:</p>
+                            <p id="cert-date">12 September 2026</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-8 border-b border-slate-400 mx-auto mb-1 flex items-center justify-center font-serif text-slate-400 text-xs italic">
+                                GeoLearn
+                            </div>
+                            <p class="font-bold">Guru Geografi / Sistem</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation & Print Control -->
+                <div class="no-print flex justify-between items-center pt-3 border-t border-slate-800">
+                    <button onclick="navToSlide(5)" class="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-xl text-xs transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Ulangi Gim</span>
+                    </button>
+                    <div class="flex space-x-3">
+                        <button onclick="restartApp()" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-xl text-xs transition flex items-center space-x-2">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span>Mulai Kembali</span>
+                        </button>
+                        <button onclick="printCertificate()" class="px-6 py-2.5 bg-eco-600 hover:bg-eco-500 text-white font-bold rounded-xl text-xs shadow-lg shadow-eco-600/30 transition flex items-center space-x-2">
+                            <i class="fa-solid fa-print"></i>
+                            <span>Cetak Sertifikat (PDF)</span>
+                        </button>
+                    </div>
+                    <button onclick="nextSlide()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs transition flex items-center space-x-2">
+                        <span>Profil Pembuat</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: PROFIL PEMBUAT -->
+            <section id="slide-7" class="slide-content hidden w-full h-full p-6 md:p-10 flex flex-col justify-between bg-slate-900 animate-fade-in overflow-y-auto">
+                <div class="max-w-3xl w-full mx-auto my-auto space-y-6">
+                    <div class="text-center space-y-2">
+                        <span class="text-xs text-amber-300 font-bold uppercase tracking-[0.24em]">Tentang Media</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-white">Profil Pembuat</h2>
+                        <p class="text-sm text-slate-300">Media pembelajaran interaktif untuk menjelajahi permasalahan lingkungan hidup di Indonesia.</p>
+                    </div>
+
+                    <div class="glass-dark border border-eco-400/30 rounded-3xl p-6 md:p-8 shadow-2xl grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 items-center">
+                        <div class="w-28 h-28 rounded-3xl bg-white border border-eco-300/40 flex items-center justify-center mx-auto overflow-hidden shadow-lg shadow-eco-900/30">
+                            <img src="Assets/ok (2).jpeg" alt="Foto Oksya Al Hakim" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-center md:text-left space-y-3">
+                            <h3 class="text-xl font-bold text-white">Oksya Al Hakim</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-300">
+                                <p><span class="text-eco-300 font-semibold">NIM:</span> 25045070</p>
+                                <p><span class="text-eco-300 font-semibold">PRODI:</span> Pendidikan Geografi</p>
+                                <p class="sm:col-span-2"><span class="text-eco-300 font-semibold">MATKUL:</span> Media Pembelajaran dan TIK</p>
+                            </div>
+                            <p class="text-sm text-slate-300 leading-relaxed">Mengembangkan pengalaman belajar digital yang interaktif, informatif, dan dekat dengan isu lingkungan di Indonesia.</p>
+                            <div class="flex flex-wrap justify-center md:justify-start gap-2 text-xs">
+                                <span class="px-3 py-1.5 rounded-full bg-eco-500/15 border border-eco-400/30 text-eco-200"><i class="fa-solid fa-earth-asia mr-1.5"></i>Geografi</span>
+                                <span class="px-3 py-1.5 rounded-full bg-amber-400/15 border border-amber-300/30 text-amber-200"><i class="fa-solid fa-seedling mr-1.5"></i>Lingkungan</span>
+                                <span class="px-3 py-1.5 rounded-full bg-cyan-400/15 border border-cyan-300/30 text-cyan-200"><i class="fa-solid fa-laptop mr-1.5"></i>Pembelajaran Digital</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center pt-4 border-t border-slate-800 mt-4">
+                    <button onclick="navToSlide(6)" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-xl text-xs transition flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Kembali ke Sertifikat</span>
+                    </button>
+                    <button onclick="restartApp()" class="px-5 py-2.5 bg-eco-600 hover:bg-eco-500 text-white font-bold rounded-xl text-xs transition flex items-center space-x-2">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Mulai Kembali</span>
+                    </button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- JavaScript Logic & State Management -->
+    <script>
+        // State Global Aplikasi
+        let currentSlide = 1;
+        let soundEnabled = true;
+
+        let studentInfo = {
+            name: "",
+            class: "",
+            school: ""
+        };
+
+        let scores = {
+            pg: 0,
+            matching: 0,
+            category: 0,
+            final: 0
+        };
+
+        // Web Audio API Sound Generator (Tanpa file eksternal)
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+        const correctAnswerAudio = new Audio('Assets/S1.mp3');
+        correctAnswerAudio.preload = 'auto';
+        const clickAudio = new Audio('Assets/S2.mp3');
+        clickAudio.preload = 'auto';
+
+        function playCorrectAnswerSound() {
+            if (!soundEnabled) return;
+            correctAnswerAudio.currentTime = 0;
+            correctAnswerAudio.play().catch(() => {});
+        }
+
+        function playClickSound() {
+            if (!soundEnabled) return;
+            clickAudio.currentTime = 0;
+            clickAudio.play().catch(() => {});
+        }
+
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('[data-answer-action]')) {
+                playClickSound();
+            }
+        });
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            try {
+                if (!audioCtx) audioCtx = new AudioContext();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'click') {
+                    osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.05);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.05);
+                } else if (type === 'correct') {
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
+                    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.25);
+                } else if (type === 'wrong') {
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(180, audioCtx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.2);
+                }
+            } catch (e) {}
+        }
+
+        function toggleAudio() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('audio-icon');
+            if (soundEnabled) {
+                icon.className = 'fa-solid fa-volume-high';
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark';
+            }
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Navigasi Slide
+        function navToSlide(slideNum) {
+            // Validasi: Harus isi identitas untuk akses slide > 2
+            if (slideNum > 2 && (!studentInfo.name || !studentInfo.class || !studentInfo.school)) {
+                navToSlide(2);
+                showFormError("Harap lengkapi identitas Anda terlebih dahulu!");
+                return;
+            }
+
+            document.querySelectorAll('.slide-content').forEach(s => s.classList.add('hidden'));
+            document.getElementById(`slide-${slideNum}`).classList.remove('hidden');
+
+            // Update Progress Bar State
+            for (let i = 1; i <= 7; i++) {
+                const btn = document.getElementById(`step-btn-${i}`);
+                if (btn) {
+                    if (i === slideNum) {
+                        btn.className = "px-3 py-1.5 rounded-full bg-eco-600 text-white font-bold transition-all shadow-md";
+                    } else if (i < slideNum) {
+                        btn.className = "px-3 py-1.5 rounded-full bg-slate-800 text-eco-400 hover:text-white transition-all";
+                    } else {
+                        btn.className = "px-3 py-1.5 rounded-full bg-slate-800 text-slate-400 hover:text-white transition-all";
+                    }
+                }
+            }
+            currentSlide = slideNum;
+        }
+
+        function nextSlide() {
+            if (currentSlide < 7) navToSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) navToSlide(currentSlide - 1);
+        }
+
+        function showFormError(msg) {
+            const errDiv = document.getElementById('form-error');
+            const errText = document.getElementById('error-msg');
+            errText.innerText = msg;
+            errDiv.classList.remove('hidden');
+        }
+
+        function saveIdentity(e) {
+            e.preventDefault();
+            const name = document.getElementById('student-name').value.trim();
+            const cls = document.getElementById('student-class').value;
+            const school = document.getElementById('student-school').value.trim();
+
+            if (!name || !cls || !school) {
+                showFormError("Harap isi semua kolom identitas!");
+                return;
+            }
+
+            studentInfo.name = name;
+            studentInfo.class = cls;
+            studentInfo.school = school;
+
+            document.getElementById('form-error').classList.add('hidden');
+            nextSlide();
+        }
+
+        // Tab Switcher Materi (Slide 4)
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.className = 'tab-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-medium transition';
+            });
+            document.getElementById(`tab-${tabId}`).className = 'tab-btn px-3 py-1.5 rounded-lg bg-eco-600 text-white font-semibold transition';
+
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+            document.getElementById(`content-${tabId}`).classList.remove('hidden');
+        }
+
+        // Tab Switcher Gim Edukasi (Slide 5)
+        function switchGameTab(gameId) {
+            document.querySelectorAll('.game-btn').forEach(b => {
+                b.className = 'game-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white font-semibold transition';
+            });
+            document.getElementById(`game-tab-${gameId}`).className = 'game-btn px-3 py-1.5 rounded-lg bg-eco-600 text-white font-semibold transition';
+
+            document.querySelectorAll('.game-container').forEach(g => g.classList.add('hidden'));
+            document.getElementById(`game-${gameId}`).classList.remove('hidden');
+        }
+
+        // =========================================================
+        // DATA & LOGIK GIM EDUKASI INTERAKTIF (SLIDE 5)
+        // =========================================================
+
+        // --- GIM 1: PILIHAN GANDA ---
+        const pgData = [
+            {
+                q: "Berdasarkan data Bank Dunia, berapakah perkiraan jumlah total sampah plastik yang dihasilkan Indonesia setiap tahunnya?",
+                options: ["2,1 Juta Ton", "4,9 Juta Ton", "7,8 Juta Ton", "14 Juta Ton"],
+                answer: 2,
+                explain: "Indonesia menghasilkan sekitar 7,8 juta ton sampah plastik per tahun, dengan 4,9 juta ton di antaranya tidak dikelola dengan baik."
+            },
+            {
+                q: "Pembakaran dan kerusakan lahan gambut di Indonesia berdampak sangat serius pada iklim global karena...",
+                options: [
+                    "Menyebabkan penurunan suhu udara mendadak",
+                    "Melepaskan emisi karbon (Gas Rumah Kaca) dalam jumlah sangat besar",
+                    "Mengubah tanah gambut menjadi pasir pantai",
+                    "Menghilangkan kandungan garam di dalam lautan"
+                ],
+                answer: 1,
+                explain: "Lahan gambut kaya akan cadangan karbon terikat. Pembakaran gambut melepas emisi GRK masif ke atmosfer."
+            },
+            {
+                q: "Partikel plastik sangat kecil berukuran < 5mm yang tercemar di sungai dan laut lalu masuk ke dalam rantai makanan disebut...",
+                options: ["Makroplastik", "Mikroplastik", "Limbah Organik", "Bioplastik"],
+                answer: 1,
+                explain: "Mikroplastik dikonsumsi biota laut dan berpotensi masuk ke tubuh manusia lewat konsumsi seafood."
+            },
+            {
+                q: "Peraturan perundang-undangan utama di Indonesia yang menjadi payung hukum perlindungan dan pengelolaan lingkungan hidup adalah...",
+                options: [
+                    "UU No. 32 Tahun 2009",
+                    "UU No. 17 Tahun 2014",
+                    "UU No. 22 Tahun 2001",
+                    "UU No. 5 Tahun 1999"
+                ],
+                answer: 0,
+                explain: "UU No. 32 Tahun 2009 memuat instrumen pencegahan pencemaran, AMDAL, dan penegakan hukum lingkungan."
+            },
+            {
+                q: "Manakah di bawah ini yang merupakan contoh satwa endemik Indonesia yang berstatus Sangat Terancam Punah (Critically Endangered)?",
+                options: ["Burung Merak Jawa", "Orangutan Sumatera", "Kambing Gunung", "Ikan Bandeng"],
+                answer: 1,
+                explain: "Orangutan Sumatera adalah salah satu mamalia endemik yang sangat terancam kepunahannya akibat fragmentasi hutan."
+            }
+        ];
+
+        let currentPgIndex = 0;
+
+        function loadPgQuestion() {
+            const data = pgData[currentPgIndex];
+            document.getElementById('pg-progress-text').innerText = `Soal ${currentPgIndex + 1} dari ${pgData.length}`;
+            document.getElementById('pg-question').innerText = data.q;
+
+            const optsDiv = document.getElementById('pg-options');
+            optsDiv.innerHTML = '';
+
+            data.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3 rounded-xl bg-slate-800 hover:bg-slate-700/80 border border-slate-700 text-xs md:text-sm text-slate-200 font-medium transition flex items-center space-x-3";
+                btn.innerHTML = `
+                    <span class="w-6 h-6 rounded-lg bg-slate-700 text-slate-300 font-bold flex items-center justify-center text-xs shrink-0">${String.fromCharCode(65 + idx)}</span>
+                    <span>${opt}</span>
+                `;
+                btn.dataset.answerAction = 'multiple-choice';
+                btn.onclick = () => checkPgAnswer(idx);
+                optsDiv.appendChild(btn);
+            });
+
+            document.getElementById('pg-feedback').className = 'hidden p-3 rounded-xl text-xs font-medium';
+        }
+
+        function checkPgAnswer(selectedIdx) {
+            const data = pgData[currentPgIndex];
+            const feedback = document.getElementById('pg-feedback');
+            feedback.classList.remove('hidden');
+
+            if (selectedIdx === data.answer) {
+                playCorrectAnswerSound();
+                scores.pg += 20;
+                feedback.className = "p-3 rounded-xl bg-eco-500/20 border border-eco-500/40 text-eco-300 text-xs font-medium animate-fade-in";
+                feedback.innerHTML = `<i class="fa-solid fa-circle-check text-base mr-1.5"></i> <strong>Benar!</strong> ${data.explain}`;
+            } else {
+                feedback.className = "p-3 rounded-xl bg-red-500/20 border border-red-500/40 text-red-300 text-xs font-medium animate-fade-in";
+                feedback.innerHTML = `<i class="fa-solid fa-circle-xmark text-base mr-1.5"></i> <strong>Kurang Tepat.</strong> Jawabannya adalah: <em>${data.options[data.answer]}</em>. ${data.explain}`;
+            }
+
+            document.getElementById('pg-score-live').innerText = `Skor PG: ${scores.pg}`;
+
+            // Disable all option buttons
+            const btns = document.querySelectorAll('#pg-options button');
+            btns.forEach(b => b.disabled = true);
+
+            setTimeout(() => {
+                if (currentPgIndex < pgData.length - 1) {
+                    currentPgIndex++;
+                    loadPgQuestion();
+                } else {
+                    feedback.innerHTML += ` <br><strong class="text-amber-400">Gim 1 Selesai! Silakan buka tab Gim 2 (Menjodohkan).</strong>`;
+                }
+            }, 2500);
+        }
+
+        // --- GIM 2: MENJODOHKAN (MATCHING PAIRS) ---
+        const matchPairs = [
+            { id: 1, term: "Deforestasi", def: "Penebangan liar & alih fungsi hutan hujan tropis secara masif." },
+            { id: 2, term: "Mikroplastik", def: "Partikel plastik halus (<5mm) yang mencemari lautan & biota laut." },
+            { id: 3, term: "Lahan Gambut", def: "Lahan kaya bahan organik penampung karbon yang rawan terbakar." },
+            { id: 4, term: "Bank Sampah", def: "Sistem pengelolaan sampah berbasis masyarakat berprinsip 3R." }
+        ];
+
+        let selectedTermId = null;
+        let matchedCount = 0;
+
+        function initMatchingGame() {
+            const termsDiv = document.getElementById('match-terms');
+            const defsDiv = document.getElementById('match-defs');
+
+            termsDiv.innerHTML = '';
+            defsDiv.innerHTML = '';
+
+            // Render Terms
+            matchPairs.forEach(p => {
+                const btn = document.createElement('button');
+                btn.id = `term-${p.id}`;
+                btn.className = "w-full text-left p-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 font-semibold hover:border-eco-500 transition";
+                btn.innerText = p.term;
+                btn.dataset.answerAction = 'matching';
+                btn.onclick = () => selectTerm(p.id);
+                termsDiv.appendChild(btn);
+            });
+
+            // Shuffle Definitions
+            const shuffledDefs = [...matchPairs].sort(() => Math.random() - 0.5);
+
+            shuffledDefs.forEach(p => {
+                const btn = document.createElement('button');
+                btn.id = `def-${p.id}`;
+                btn.className = "w-full text-left p-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 hover:border-eco-500 transition";
+                btn.innerText = p.def;
+                btn.dataset.answerAction = 'matching';
+                btn.onclick = () => selectDef(p.id);
+                defsDiv.appendChild(btn);
+            });
+        }
+
+        function selectTerm(id) {
+            selectedTermId = id;
+            matchPairs.forEach(p => {
+                const el = document.getElementById(`term-${p.id}`);
+                if (el) {
+                    if (p.id === id) {
+                        el.className = "w-full text-left p-3 rounded-xl bg-eco-600 border border-eco-400 text-white font-bold ring-2 ring-eco-400 transition";
+                    } else if (!el.disabled) {
+                        el.className = "w-full text-left p-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 font-semibold hover:border-eco-500 transition";
+                    }
+                }
+            });
+        }
+
+        function selectDef(defId) {
+            if (!selectedTermId) {
+                const fb = document.getElementById('matching-feedback');
+                fb.classList.remove('hidden');
+                fb.className = "p-3 rounded-xl bg-amber-500/20 text-amber-300 text-xs text-center";
+                fb.innerText = "Pilih dulu Istilah di sebelah kiri!";
+                return;
+            }
+
+            const termEl = document.getElementById(`term-${selectedTermId}`);
+            const defEl = document.getElementById(`def-${defId}`);
+
+            if (selectedTermId === defId) {
+                playCorrectAnswerSound();
+                scores.matching += 25;
+                termEl.className = "w-full text-left p-3 rounded-xl bg-emerald-900/60 border border-emerald-500 text-emerald-300 font-bold opacity-60";
+                defEl.className = "w-full text-left p-3 rounded-xl bg-emerald-900/60 border border-emerald-500 text-emerald-300 font-bold opacity-60";
+                termEl.disabled = true;
+                defEl.disabled = true;
+                matchedCount++;
+
+                if (matchedCount === matchPairs.length) {
+                    const fb = document.getElementById('matching-feedback');
+                    fb.classList.remove('hidden');
+                    fb.className = "p-3 rounded-xl bg-eco-500/20 border border-eco-500/40 text-eco-300 text-xs font-bold text-center";
+                    fb.innerText = "Hebat! Semua pasangan istilah berhasil dijodohkan dengan benar (Nilai: 100).";
+                }
+            } else {
+                const fb = document.getElementById('matching-feedback');
+                fb.classList.remove('hidden');
+                fb.className = "p-3 rounded-xl bg-red-500/20 border border-red-500/40 text-red-300 text-xs font-semibold text-center";
+                fb.innerText = "Pasangan kurang cocok. Coba lagi!";
+            }
+
+            selectedTermId = null;
+        }
+
+        // --- GIM 3: MENGKATEGORIKAN ---
+        const catItems = [
+            { id: 1, text: "Illegal Logging dan Perkebunan Skala Besar di Kawasan Hutan", category: "Penyebab" },
+            { id: 2, text: "Penyakit ISPA akibat Kabut Asap & Emisi Udara Perkotaan", category: "Dampak" },
+            { id: 3, text: "Penerapan Daur Ulang melalui Program Bank Sampah", category: "Solusi" },
+            { id: 4, text: "Punahnya Satwa Endemik akibat Kerusakan Habitat Natural", category: "Dampak" },
+            { id: 5, text: "Penegakan Hukum Tegas berbasis UU No. 32 Tahun 2009 (PPLH)", category: "Solusi" },
+            { id: 6, text: "Pembuangan Limbah Cair Industri tanpa IPAL ke Sungai", category: "Penyebab" }
+        ];
+
+        let classifiedCount = 0;
+
+        function initCategoryGame() {
+            const container = document.getElementById('category-cards-container');
+            container.innerHTML = '';
+
+            catItems.forEach(item => {
+                const card = document.createElement('div');
+                card.id = `cat-item-${item.id}`;
+                card.className = "p-3 rounded-xl bg-slate-800 border border-slate-700 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs transition";
+                card.innerHTML = `
+                    <span class="text-slate-200 font-medium">${item.text}</span>
+                    <div class="flex space-x-2 shrink-0">
+                        <button data-answer-action="category" onclick="classifyItem(${item.id}, 'Penyebab')" class="px-3 py-1.5 rounded-lg bg-amber-600/30 hover:bg-amber-600 text-amber-300 font-bold border border-amber-500/40 transition">Penyebab</button>
+                        <button data-answer-action="category" onclick="classifyItem(${item.id}, 'Dampak')" class="px-3 py-1.5 rounded-lg bg-red-600/30 hover:bg-red-600 text-red-300 font-bold border border-red-500/40 transition">Dampak</button>
+                        <button data-answer-action="category" onclick="classifyItem(${item.id}, 'Solusi')" class="px-3 py-1.5 rounded-lg bg-eco-600/30 hover:bg-eco-600 text-eco-300 font-bold border border-eco-500/40 transition">Solusi</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function classifyItem(id, selectedCat) {
+            const item = catItems.find(i => i.id === id);
+            const card = document.getElementById(`cat-item-${id}`);
+
+            if (selectedCat === item.category) {
+                playCorrectAnswerSound();
+                scores.category += Math.round(100 / catItems.length);
+                card.className = "p-3 rounded-xl bg-emerald-950/60 border border-emerald-500 text-emerald-300 text-xs flex justify-between items-center opacity-70";
+                card.innerHTML = `<span class="line-through">${item.text}</span> <span class="px-2 py-1 bg-emerald-600 text-white font-bold rounded">Tepat (${item.category})</span>`;
+            } else {
+                card.className = "p-3 rounded-xl bg-red-950/60 border border-red-500 text-red-300 text-xs flex justify-between items-center";
+                card.innerHTML = `<span>${item.text}</span> <span class="px-2 py-1 bg-red-600 text-white font-bold rounded">Salah (Kategori: ${item.category})</span>`;
+            }
+
+            classifiedCount++;
+            if (classifiedCount === catItems.length) {
+                const fb = document.getElementById('category-feedback');
+                fb.classList.remove('hidden');
+                fb.className = "p-3 rounded-xl bg-eco-500/20 border border-eco-500/40 text-eco-300 text-xs font-bold text-center";
+                fb.innerText = "Selamat! Semua item berhasil dikategorikan.";
+            }
+        }
+
+        // Selesaikan Seluruh Gim & Generate Sertifikat (Slide 6)
+        function finishGameAndShowCertificate() {
+            playSound('correct');
+
+            // Kalkulasi Skor Akhir
+            const finalScore = Math.round((scores.pg + scores.matching + scores.category) / 3);
+            scores.final = finalScore;
+
+            // Render ke Sertifikat
+            document.getElementById('cert-name').innerText = studentInfo.name || "NAMA PESERTA DIDIK";
+            document.getElementById('cert-school-class').innerText = `Kelas ${studentInfo.class} • ${studentInfo.school}`;
+            
+            document.getElementById('cert-score-pg').innerText = scores.pg;
+            document.getElementById('cert-score-match').innerText = scores.matching;
+            document.getElementById('cert-score-cat').innerText = scores.category;
+            document.getElementById('cert-final-score').innerText = finalScore;
+
+            // Tentukan Predikat
+            const predEl = document.getElementById('cert-predicate');
+            if (finalScore >= 88) {
+                predEl.innerText = "Predikat: Sangat Baik (A+)";
+                predEl.className = "inline-block px-4 py-1.5 bg-eco-700 text-white rounded-full text-xs font-bold uppercase tracking-wider";
+            } else if (finalScore >= 75) {
+                predEl.innerText = "Predikat: Baik (A)";
+                predEl.className = "inline-block px-4 py-1.5 bg-blue-700 text-white rounded-full text-xs font-bold uppercase tracking-wider";
+            } else {
+                predEl.innerText = "Predikat: Cukup (B)";
+                predEl.className = "inline-block px-4 py-1.5 bg-amber-700 text-white rounded-full text-xs font-bold uppercase tracking-wider";
+            }
+
+            // Tanggal Hari Ini
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('cert-date').innerText = today.toLocaleDateString('id-ID', options);
+
+            navToSlide(6);
+        }
+
+        // Print Sertifikat ke PDF
+        function printCertificate() {
+            window.print();
+        }
+
+        // Restart Aplikasi
+        function restartApp() {
+            scores = { pg: 0, matching: 0, category: 0, final: 0 };
+            currentPgIndex = 0;
+            matchedCount = 0;
+            classifiedCount = 0;
+
+            loadPgQuestion();
+            initMatchingGame();
+            initCategoryGame();
+
+            navToSlide(1);
+        }
+
+        // Inisialisasi awal saat window dimuat
+        window.onload = function() {
+            loadPgQuestion();
+            initMatchingGame();
+            initCategoryGame();
+        };
+    </script>
+</body>
+</html>
